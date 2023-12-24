@@ -40,7 +40,18 @@ const noteSchema = new mongoose.Schema({
     default: '',
   },
   comments: [commentSchema], 
-  //cat,tags
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
+  category:{
+    type:String
+  },
+  tags:[
+    {
+      type:"String"
+    }
+  ]
 });
 
 const Note = mongoose.model('Note', noteSchema);

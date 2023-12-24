@@ -1,95 +1,158 @@
-const bcryptjs = require('bcryptjs');
+const Note = require('../models/note');
 const User = require('../models/user')
+const { ObjectId } = require('mongodb');
 
 
-registerUser = async (req, res) => {
+const createNote = async (req, res) => {
+    try {
+
+      const { title, content, description, collaborators } = req.body;
+      const owner = req.params.id;
+  
+
+      if (!title || !content || !owner) {
+        return res.status(400).json({ message: 'Title, content, and owner are required' });
+      }
+
+      const newNote = new Note({
+        title,
+        content,
+        description: description || '', 
+        owner,
+        collaborators: collaborators || [], 
+      });
+  
+      const savedNote = await newNote.save();
+  
+      const user = await User.findById(owner);
+      if (user) {
+        user.ownedDocuments.push(savedNote._id);
+        await user.save();
+      }
+
+      res.status(201).json(savedNote);
+    } catch (error) {
+      console.error('Error creating note:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  };
+
+const addCollaborators = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    const existingUser = await User.findOne({ email });
+    const noteId = req.params.id;
+    const { collaborators } = req.body;
 
-    if (existingUser) {
-      return res.status(400).json({ message: 'User with this email is already registered' });
+    // Check if the note exists
+    const noteToUpdate = await Note.findById(noteId);
+    if (!noteToUpdate) {
+      return res.status(404).json({ message: 'Note not found' });
     }
 
-    const hashedPassword = await bcryptjs.hash(password, 10);
+    // Update collaborators using an aggregate pipeline
+    const updatedNote = await Note.findByIdAndUpdate(
+      noteId,
+      [
+        {
+          $set: {
+            collaborators: {
+              $concatArrays: [
+                '$collaborators',
+                collaborators || [] // Add collaborators or an empty array if not provided
+              ]
+            }
+          }
+        }
+      ],
+      { new: true }
+    );
 
-    const newUser = new User({
-      username,
-      email,
-      password: hashedPassword,
-    });
-
-    const savedUser = await newUser.save();
-
-    const { _id, name: savedName, email: savedEmail } = savedUser;
-
-    res.status(201).json({
-      _id,
-      name: savedName,
-      email: savedEmail,
-      message: 'User registered successfully',
-    });
+    res.json(updatedNote);
   } catch (error) {
-    console.error('Error registering user:', error);
+    console.error('Error adding collaborators to note:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
 
-
-deleteUser = async (req, res) => {
+const getNoteDetails = async (req, res) => {
     try {
-      const userId = req.params.id;
-  
-      const userToDelete = await User.findById(userId);
-      if (!userToDelete) {
-        return res.status(404).json({ message: 'User not found' });
-      }
-  
-      await User.findByIdAndDelete(userId);
-  
-      res.json({ message: 'User deleted successfully' });
-    } catch (error) {
-      console.error('Error deleting user:', error);
-      res.status(500).json({ message: 'Internal Server Error' });
-    }
-  };
-  
-  updateUser = async (req, res) => {
-    try {
-      const userId = req.params.id;
-      const { username, email, password } = req.body;
-  
-      const userToUpdate = await User.findById(userId);
-      if (!userToUpdate) {
-        return res.status(404).json({ message: 'User not found' });
-      }
+      const noteId = req.params.id;
 
-      userToUpdate.username = username;
-      userToUpdate.email = email;
+      const note = await Note.findById(noteId);
   
-      if (password) {
-        userToUpdate.password = await bcryptjs.hash(password, 10);
+      if (!note) {
+        return res.status(404).json({ message: 'Note not found' });
       }
   
-      const updatedUser = await userToUpdate.save();
-  
-      const { _id, username: updatedUsername, email: updatedEmail } = updatedUser;
-  
-      res.json({
-        _id,
-        username: updatedUsername,
-        email: updatedEmail,
-        message: 'User updated successfully',
-      });
+      res.json(note);
     } catch (error) {
-      console.error('Error updating user:', error);
+      console.error('Error fetching note details:', error);
       res.status(500).json({ message: 'Internal Server Error' });
     }
   };
 
- 
+
+const deleteNote = async (req, res) => {
+  try {
+    const noteId = req.params.id;
+
+    const deletedNote = await Note.findByIdAndDelete(noteId);
+
+    if (!deletedNote) {
+      return res.status(404).json({ message: 'Note not found' });
+    }
+
+    res.json({ message: 'Note deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting note:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+const updateNote = async (req, res) => {
+  try {
+    const noteId = req.params.id;
+    const { title, content, description, collaborators } = req.body;
+
+    const existingNote = await Note.findById(noteId);
+
+    if (!existingNote) {
+      return res.status(404).json({ message: 'Note not found' });
+    }
+
+    // Update note data
+    existingNote.title = title;
+    existingNote.content = content;
+    existingNote.description = description || existingNote.description;
+    existingNote.collaborators = collaborators || existingNote.collaborators;
+
+    // Save the updated note
+    const updatedNote = await existingNote.save();
+
+    res.json(updatedNote);
+  } catch (error) {
+    console.error('Error updating note:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+const getNotesByOwner = async (req, res) => {
+    try {
+      const ownerId = req.params.id;
+  
+      const notes = await Note.find({ 'owner.id': ownerId.toString() });
+  
+      res.json(notes);
+    } catch (error) {
+      console.error('Error fetching notes by owner:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  };
+  
 module.exports={
-    registerUser,
-    deleteUser,
-    updateUser
+    createNote,
+    addCollaborators,
+    getNoteDetails,
+    deleteNote,
+    updateNote,
+    getNotesByOwner
 }
