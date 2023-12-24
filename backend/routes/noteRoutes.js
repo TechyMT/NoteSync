@@ -6,7 +6,7 @@ router.post('/note', createNote);
 router.get('/note/:id', getNoteDetails);
 router.delete('/note/:id', deleteNote);
 router.put('/note/:id', updateNote);
-router.get('/notes', getNotesByOwner);
+router.get('/get-notes/:id', getNotesByOwner);
 
 
 module.exports = router;

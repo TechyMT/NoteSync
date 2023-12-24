@@ -18,7 +18,7 @@ app.use(express.json());
 
 // //
 app.use("/user", userRouter);
-app.use("/note", notesRouter);
+app.use("/note-api", notesRouter);
 app.use("", defaultRouter);
 
 

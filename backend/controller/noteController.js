@@ -9,7 +9,7 @@ const createNote = async (req, res) =>
   {
 
     const { title, content, collaborators, uid, category, tags } = req.body;
-    if (!title || !content || !owner)
+    if (!title || !content )
     {
       return res.status(400).json({ message: 'Title, content, and owner are required' });
     }
@@ -112,8 +112,8 @@ const getNotesByOwner = async (req, res) =>
 {
   try
   {
-    const { uid } = req.body;
-    const notes = await Note.find({ "uid": uid.toString() });
+    const { id } = req.params.id;
+    const notes = await Note.find({ "uid": id.toString() });
 
     res.json(notes);
   } catch (error)
