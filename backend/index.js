@@ -1,5 +1,5 @@
 const express = require("express");
-const connectDB = require("./config/db");
+const connectDB = require("./models/connect");
 const cors = require("cors");
 const userRouter = require("./routes/userRoutes");
 const notesRouter = require("./routes/noteRoutes");
