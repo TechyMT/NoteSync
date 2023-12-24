@@ -11,7 +11,7 @@ const Header = () => {
             <div className="flex ml-12 flex-shrink gap-1 items-end">
                 {
                     categories.map((item, index) => (
-                        <span className={`nav-item flex items-center p-2 py-1 justify-start flex-shrink-0 rounded-lg  font-medium ${index == 1 ? "bg-blue-500 shadow text-white" : "bg-gray-50"}`}>
+                        <span key={index} className={`nav-item flex items-center p-2 py-1 justify-start flex-shrink-0 rounded-lg  font-medium ${index == 1 ? "bg-blue-500 shadow text-white" : "bg-gray-50"}`}>
                             {item.title}
                         </span>
                     ))
