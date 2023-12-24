@@ -11,7 +11,7 @@ const Sidebar = () => {
             <div className="navlist flex flex-col py-4 px-4  ">
                 {
                     navList.map((item, index) => (
-                        <div className={`nav-item flex items-center justify-start gap-3 w-full px-8 py-2 my-1 rounded-lg  font-medium ${index == 1 ? "bg-blue-500 shadow text-white" : ""}`}>
+                        <div key={index} className={`nav-item flex items-center justify-start gap-3 w-full px-8 py-2 my-1 rounded-lg  font-medium ${index == 1 ? "bg-blue-500 shadow text-white" : ""}`}>
                             {item.icon}
                             <span> {item.title}</span>
                         </div>

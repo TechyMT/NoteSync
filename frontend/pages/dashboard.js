@@ -8,7 +8,7 @@ import Loading from '@/components/Loading'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-const dashboard = () => {
+const Dashboard = () => {
     const { user, setUser, signOut } = UserAuth()
     useEffect(() => {
         localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')))
@@ -60,6 +60,6 @@ const dashboard = () => {
     )
 }
 
-export default dashboard
+export default Dashboard
 
 
