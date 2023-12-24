@@ -58,7 +58,7 @@ Clone the repo `git clone https://github.com/Ayush-Bulbule/FashionStore/`
    ![image](https://github.com/Ayush-Bulbule/Hack-O-Rama/assets/111428696/21c18fc7-6787-4448-858d-2dd4aaf10baf)
 
 
-   **3. View Page**
+   **3. View Document**
 
    ![image](https://github.com/Ayush-Bulbule/Hack-O-Rama/assets/111428696/b86c44db-ef0f-4475-bc62-714f1f99e82b)
 
