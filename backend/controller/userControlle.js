@@ -4,19 +4,18 @@ const User = require('../models/user')
 
 registerUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { uid,displayname, email, photoURL } = req.body;
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      return res.status(400).json({ message: 'User with this email is already registered' });
+      return res.status(200).json({ message: 'User with this email is already registered' });
     }
 
-    const hashedPassword = await bcryptjs.hash(password, 10);
-
     const newUser = new User({
-      username,
+      uid,
+      displayname,
       email,
-      password: hashedPassword,
+      photoURL
     });
 
     const savedUser = await newUser.save();

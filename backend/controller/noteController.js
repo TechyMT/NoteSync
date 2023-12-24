@@ -126,7 +126,6 @@ const getNotesByOwner = async (req, res) =>
 
 module.exports = {
   createNote,
-  addCollaborators,
   getNoteDetails,
   deleteNote,
   updateNote,
