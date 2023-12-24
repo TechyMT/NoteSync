@@ -1,9 +1,10 @@
-
-const Note = require('./note');
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  username: {
+  uid:{
+    type:String
+  },
+  displayname: {
     type: String,
     required: true,
   },
@@ -12,19 +13,9 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  profilePic: {
+  photoURL: {
     type: String,
   },
-  ownedDocuments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Note', 
-    },
-  ],
 });
 
 const User = mongoose.model('User', userSchema);
