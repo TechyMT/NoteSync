@@ -6,6 +6,7 @@ import Card from '@/components/Card'
 import { MdAdd } from 'react-icons/md'
 import Loading from '@/components/Loading'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 const dashboard = () => {
     const { user, setUser, signOut } = UserAuth()
@@ -20,14 +21,16 @@ const dashboard = () => {
         <>
             {
                 user ?
-                    <main className='conatiner flex bg-gray-100 h-screen '>
+                    <main className='conatiner flex bg-gray-100 h-screen'>
                         < Sidebar />
-                        <div className="w-5/6 px-16 overflow-y-scroll">
-                            <Navbar />
-                            {/* Heading Section */}
-                            <Header />
-                            {/* Notes Section */}
-                            <div className="notes  mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
+                        <div className="w-5/6 overflow-y-scroll ">
+                            <div className="px-6">
+                                <Navbar />
+                                {/* Heading Section */}
+                                <Header />
+                                {/* Notes Section */}
+                            </div>
+                            <div className="notes px-6 py-4  mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
                                 {/* Add New Note */}
                                 <div className=" cursor-pointer note-card flex items-center justify-center bg-white rounded-lg shadow-md flex-col p-4">
                                     <div className="border-2 flex items-center justify-center border-dashed border-blue-400 rounded-full h-32 w-32">
@@ -46,8 +49,10 @@ const dashboard = () => {
                                 <Card />
                             </div>
 
+                            <Footer />
                         </div>
-                    </main > :
+                    </main >
+                    :
                     <Loading />
 
             }
@@ -56,3 +61,5 @@ const dashboard = () => {
 }
 
 export default dashboard
+
+
