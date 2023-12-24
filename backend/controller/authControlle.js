@@ -1,26 +1,94 @@
-import bcryptjs from 'bcryptjs';
+const bcryptjs = require('bcryptjs');
+const User = require('../models/user')
 
-export const register = async (req, res) => {
+
+registerUser = async (req, res) => {
+  try {
     const { username, email, password } = req.body;
-    try {
-        const salt = await bcryptjs.genSalt(10);
-        const hashedPassword = await bcryptjs.hash(password, salt);
-        const newUser = await User.create({
-            username,
-            email,
-            password: hashedPassword
-        });
-        req.session.user = newUser;
-        res.status(201).json({
-            status: "success",
-            data: {
-                user: newUser
-            }
-        })
-    } catch (error) {
-        res.status(500).json({
-            status: "fail",
-            message: error.message
-        })
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email is already registered' });
     }
+
+    // Hash the password
+    const hashedPassword = await bcryptjs.hash(password, 10);
+
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+    });
+
+    const savedUser = await newUser.save();
+
+    const { _id, name: savedName, email: savedEmail } = savedUser;
+
+    res.status(201).json({
+      _id,
+      name: savedName,
+      email: savedEmail,
+      message: 'User registered successfully',
+    });
+  } catch (error) {
+    console.error('Error registering user:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+
+deleteUser = async (req, res) => {
+    try {
+      const userId = req.params.id;
+  
+      const userToDelete = await User.findById(userId);
+      if (!userToDelete) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      await User.findByIdAndDelete(userId);
+  
+      res.json({ message: 'User deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  };
+  
+  updateUser = async (req, res) => {
+    try {
+      const userId = req.params.id;
+      const { username, email, password } = req.body;
+  
+      const userToUpdate = await User.findById(userId);
+      if (!userToUpdate) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      userToUpdate.username = username;
+      userToUpdate.email = email;
+  
+      if (password) {
+        userToUpdate.password = await bcryptjs.hash(password, 10);
+      }
+  
+      const updatedUser = await userToUpdate.save();
+  
+      const { _id, username: updatedUsername, email: updatedEmail } = updatedUser;
+  
+      res.json({
+        _id,
+        username: updatedUsername,
+        email: updatedEmail,
+        message: 'User updated successfully',
+      });
+    } catch (error) {
+      console.error('Error updating user:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  };
+module.exports={
+    registerUser,
+    deleteUser,
+    updateUser
 }

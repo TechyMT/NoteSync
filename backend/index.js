@@ -2,7 +2,7 @@ const express = require("express");
 const connectDB = require("./config/db");
 // const routes = require("./routes/index");
 const cors = require("cors");
-
+const userRoutes = require('./routes/userRoutes');
 
 //initialize express
 const app = express()
@@ -14,12 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 
-// //
-// app.use(routes);
-// app.get("/", (req, res) => {
-//     res.send("Hello World")
-// });
-
+// Use user routes
+app.use('/api/v1', userRoutes);
 
 
 const PORT = process.env.PORT || 8000;
