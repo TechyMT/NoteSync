@@ -16,4 +16,4 @@ const client = async () => {
 }
 
 
-module.exports =client;
+module.exports = connectDB;
