@@ -1,20 +1,31 @@
-import { Schema } from "mongoose";
+const Note = require('./note');
+const mongoose = require('mongoose');
 
-const user = new Schema({
-    name: {
-        type: String,
-        required: true
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  profilePic: {
+    type: String,
+  },
+  ownedDocuments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Note', 
     },
-    email: {
-        type: String,
-        unique: true,
-        index: true,
-        required: true
-    },
-    passwordHash: {
-        type: String,
-        required: true
-    }
-}, {
-    timestamps: true
-})
+  ],
+});
+
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
