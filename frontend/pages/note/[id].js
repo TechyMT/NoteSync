@@ -1,8 +1,28 @@
-import React from 'react'
-import Link from 'next/link'
-import { MdEdit } from 'react-icons/md'
+"use client";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { MdEdit } from 'react-icons/md';
+import axios from 'axios';
+import { UserAuth } from '@/utils/auth';
+import { useParams } from 'next/navigation';
 
-const NoteDetails = () => {
+
+const NoteDetails = () =>
+{
+    const { id } = useParams();
+    const [notes, setNotes] = React.useState([]);
+    useEffect(() =>
+    {
+        localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')));
+        const fetchDate = async () =>
+        {
+            const res = await axios.get(`https://hack-o-rama.onrender.com/get-notes/${id}`);
+            const data = await res.json();
+            setNotes(data);
+
+        };
+
+    }, []);
     return (
         <div>
             <div className="fixed w-full shadow bg-white z-50">
@@ -20,39 +40,36 @@ const NoteDetails = () => {
                 </div>
             </div>
             <div className="conatiner max-w-5xl mx-auto py-24 px-4 sm:px-6 lg:px-8 min-h-screen">
-                <h3 className='text-4xl text-gray-800 font-bold '>Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 className='text-4xl text-gray-800 font-bold '>{notes.title}</h3>
                 {/* Tags */}
                 <div className='flex items-center mt-4'>
-                    <div className='bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>Tag1</div>
-                    <div className='bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>Tag2</div>
-                    <div className='bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>Tag3</div>
+                    {notes.tags.map(tag =>
+                    {
+                        <div className='bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2' key={tag}>{tag}</div>;
+
+                    })}
+
+                    {/* <div className='bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>Tag2</div>
+                    <div className='bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>Tag3</div> */}
                 </div>
                 {/* Note */}
 
                 <p className='text-md mt-6'>
+                    {notes.content || `
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
-
-                    <br />
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
-
-                    <br />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi perspiciatis quasi dicta tenetur rem praesentium aliquam nemo debitis vel. Impedit voluptate, soluta quibusdam error rem praesentium! Voluptatibus dolores numquam consectetur.`}
                 </p>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default NoteDetails
+export default NoteDetails;

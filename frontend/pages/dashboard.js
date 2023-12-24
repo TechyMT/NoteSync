@@ -1,21 +1,36 @@
-import Navbar from '@/components/Navbar'
-import Sidebar from '@/components/Sidebar'
-import { UserAuth } from '@/utils/auth'
-import React, { useEffect } from 'react'
-import Card from '@/components/Card'
-import { MdAdd } from 'react-icons/md'
-import Loading from '@/components/Loading'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+"use client";
+import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
+import { UserAuth } from '@/utils/auth';
+import React, { useEffect } from 'react';
+import Card from '@/components/Card';
+import { MdAdd } from 'react-icons/md';
+import Loading from '@/components/Loading';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import axios from 'axios';
 
-const Dashboard = () => {
-    const { user, setUser, signOut } = UserAuth()
-    useEffect(() => {
-        localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')))
-        if (user) {
-        }
-        console.log(user)
-    }, [])
+
+const Dashboard = () =>
+{
+    const { user, setUser, signOut } = UserAuth();
+    const [notes, setNotes] = React.useState([]);
+    useEffect(() =>
+    {
+        localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')));
+        const fetchData = async () =>
+        {
+            if (user)
+            {
+                const res = await axios.get(`https://hack-o-rama.onrender.com/get-notes/${user.uid}`);
+                const data = await res.json();
+                setNotes(data);
+            }
+        };
+        fetchData();
+
+        console.log(user);
+    }, []);
 
     return (
         <>
@@ -38,15 +53,19 @@ const Dashboard = () => {
                                     </div>
                                     <p className='text-blue-400 font-medium mt-4'>Add Note</p>
                                 </div>
+                                {/* {
+                                    notes.map((note) =>
+                                    {
+                                        return <Card key={note.id} id={note._id} category={note.category} title={note.title} content={note.content} timestamp={note.timestamp} displayName={user.displayName} />;
+                                    })
+                                } */}
                                 <Card />
                                 <Card />
                                 <Card />
                                 <Card />
                                 <Card />
-                                <Card />
-                                <Card />
-                                <Card />
-                                <Card />
+
+
                             </div>
 
                             <Footer />
@@ -57,8 +76,8 @@ const Dashboard = () => {
 
             }
         </>
-    )
-}
+    );
+};
 
 export default Dashboard
 
