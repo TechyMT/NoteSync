@@ -5,11 +5,9 @@ const commentSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
   },
   content: {
     type: String,
-    required: true,
   },
   createdAt: {
     type: Date,
@@ -42,6 +40,7 @@ const noteSchema = new mongoose.Schema({
     default: '',
   },
   comments: [commentSchema], 
+  //cat,tags
 });
 
 const Note = mongoose.model('Note', noteSchema);
