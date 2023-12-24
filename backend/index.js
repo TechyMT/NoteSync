@@ -1,6 +1,6 @@
 const express = require("express");
 const connectDB = require("./config/db");
-const routes = require("./routes/index");
+// const routes = require("./routes/index");
 const cors = require("cors");
 
 
@@ -14,11 +14,11 @@ app.use(cors());
 app.use(express.json());
 
 
-//
-app.use(routes);
-app.get("/", (req, res) => {
-    res.send("Hello World")
-});
+// //
+// app.use(routes);
+// app.get("/", (req, res) => {
+//     res.send("Hello World")
+// });
 
 
 
