@@ -48,17 +48,17 @@ Clone the repo `git clone https://github.com/Ayush-Bulbule/FashionStore/`
 ## 5. Screenshots
 
    
-  **  1. User Login  **
+  **1. User Login**
 
    ![image](https://github.com/Ayush-Bulbule/Hack-O-Rama/assets/111428696/6b1e1a39-dcd4-4292-9b20-0ef74c54bc22)
 
 
-   # 2. User Dashboard
+   **2. User Dashboard**
 
    ![image](https://github.com/Ayush-Bulbule/Hack-O-Rama/assets/111428696/21c18fc7-6787-4448-858d-2dd4aaf10baf)
 
 
-   # 3. View Page
+   **3. View Page**
 
    ![image](https://github.com/Ayush-Bulbule/Hack-O-Rama/assets/111428696/b86c44db-ef0f-4475-bc62-714f1f99e82b)
 
