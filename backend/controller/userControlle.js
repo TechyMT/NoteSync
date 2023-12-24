@@ -5,7 +5,7 @@ const User = require('../models/user')
 registerUser = async (req, res) => {
   try {
     const { uid,displayname, email, photoURL } = req.body;
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ uid });
 
     if (existingUser) {
       return res.status(200).json({ message: 'User with this email is already registered' });

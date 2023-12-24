@@ -112,7 +112,7 @@ const getNotesByOwner = async (req, res) =>
 {
   try
   {
-    const { id } = req.params.id;
+    const  id  = req.params.id;
     const notes = await Note.find({ "uid": id.toString() });
 
     res.json(notes);
