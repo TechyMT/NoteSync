@@ -25,6 +25,14 @@ const useAuth = () => {
     const [user, setUser] = useState(null);
     const router = useRouter();
 
+    useEffect(() => {
+        localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')))
+        if (user) {
+            router.push('/dashboard');
+        }
+        console.log(user)
+    }, [])
+
 
 
     const googleSignIn = async () => {
