@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {registerUser,deleteUser,updateUser} = require('../controller/authControlle');
+const {registerUser,deleteUser,updateUser} = require('../controller/userControlle');
 
 router.post('/register-user', registerUser);
 router.delete('/delete-user/:id', deleteUser);
