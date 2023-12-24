@@ -1,4 +1,10 @@
-# NoteSync - Built at Hack-O-Rama
+# NoteSync - Built at Hack-O-Rama 
+# Team - TechWing
+# Collabarators :
+  #  1. Yadhnesh Gangurde
+  #  2. Mustafa Truckwala
+  #  3. Ayush Bulbule
+  #  4. Khushi Nikam
 
 ## 1. Introduction
 
@@ -17,9 +23,9 @@
 
 ## 3. Features
 
-- Feature One
-- Feature Two
-- 
+1. Real-time Collaboration: Users can collaborate in real-time, seeing each other's changes instantly.
+2. User-friendly Interface: An intuitive and easy-to-use interface for a smooth note-taking experience.
+3. Markdown Support: Write notes with the flexibility of markdown formatting.
 ## 4. Setup Locally
 
 Clone the repo `git clone https://github.com/Ayush-Bulbule/FashionStore/`
@@ -39,7 +45,11 @@ Clone the repo `git clone https://github.com/Ayush-Bulbule/FashionStore/`
 
 
 ## 5. Screenshots
-**Group By: User**
+
+   # 1. User Login
+
+   ![image](https://github.com/Ayush-Bulbule/Hack-O-Rama/assets/111428696/6b1e1a39-dcd4-4292-9b20-0ef74c54bc22)
+
 
 
 ## 6. Deployment
