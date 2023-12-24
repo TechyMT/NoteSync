@@ -1,6 +1,7 @@
 # NoteSync - Built at Hack-O-Rama 
 # Team - TechWing
 # Collabarators :
+  
    1. Yadhnesh Gangurde
    2. Mustafa Truckwala
    3. Ayush Bulbule
