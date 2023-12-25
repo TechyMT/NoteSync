@@ -6,7 +6,6 @@ const createNote = async (req, res) =>
 {
   try
   {
-
     const { title, content, uid, category, tags } = req.body;
     if (!title || !content)
     {
@@ -28,7 +27,7 @@ const createNote = async (req, res) =>
   } catch (error)
   {
     console.error('Error creating note:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: 'Internal Server Error', error: error });
   }
 };
 
