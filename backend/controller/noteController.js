@@ -36,9 +36,11 @@ const getNoteDetails = async (req, res) =>
 {
   try
   {
-    const noteId = req.params.id;
+    const { id: noteId } = req.params;
 
-    const note = await Note.find({ "docId": noteId });
+
+
+    const note = await Note.find({ "docId": `${noteId}` });
 
     if (!note)
     {
