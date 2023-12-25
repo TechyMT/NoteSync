@@ -8,11 +8,6 @@ const noteSchema = new mongoose.Schema({
   uid: {
     type: String
   },
-  collaborators: [
-    {
-      type: String
-    }
-  ],
   content: {
     type: String,
     default: '',
