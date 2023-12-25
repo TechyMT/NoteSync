@@ -6,13 +6,14 @@ const createNote = async (req, res) =>
 {
   try
   {
-    const { title, content, uid, category, tags } = req.body;
+    const { docId, title, content, uid, category, tags } = req.body;
     if (!title || !content)
     {
       return res.status(400).json({ message: 'Title, content, and owner are required' });
     }
 
     const newNote = new Note({
+      docId,
       uid,
       title,
       content,
