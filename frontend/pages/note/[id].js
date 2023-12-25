@@ -75,3 +75,12 @@
 
 
 // // Path: frontend/pages/note/%5Bid%5D.js
+import React from 'react'
+
+const NotePage = () => {
+    return (
+        <div>NotePage</div>
+    )
+}
+
+export default NotePage
