@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { LocaleRouteNormalizer } from 'next/dist/server/future/normalizers/locale-route-normalizer';
 
 const Card = ({ id, category, title, content, timestamp, displayName }) =>
 {

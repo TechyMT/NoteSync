@@ -1,3 +1,5 @@
-module.exports = {
-    publicUrl: "https://hack-o-rama.onrender.com",
+module.exports = () =>
+{
+    return "https://hack-o-rama.onrender.com/api"
+    
 };

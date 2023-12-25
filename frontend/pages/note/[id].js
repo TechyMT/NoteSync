@@ -14,13 +14,14 @@ const NoteDetails = () =>
     useEffect(() =>
     {
         localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')));
-        const fetchDate = async () =>
+        const fetchData = async () =>
         {
             const res = await axios.get(`https://hack-o-rama.onrender.com/get-notes/${id}`);
             const data = await res.json();
             setNotes(data);
 
         };
+        fetchData();
 
     }, []);
     return (
