@@ -1,5 +1,4 @@
 const Note = require('../models/note');
-const User = require('../models/user');
 const { ObjectId } = require('mongodb');
 
 
@@ -8,8 +7,8 @@ const createNote = async (req, res) =>
   try
   {
 
-    const { title, content,  uid, category, tags } = req.body;
-    if (!title || !content )
+    const { title, content, uid, category, tags } = req.body;
+    if (!title || !content)
     {
       return res.status(400).json({ message: 'Title, content, and owner are required' });
     }
@@ -18,7 +17,6 @@ const createNote = async (req, res) =>
       uid,
       title,
       content,
-      collaborators: collaborators || [],
       category,
       tags: tags || [],
       timestamp: Date.now()
@@ -40,14 +38,14 @@ const getNoteDetails = async (req, res) =>
   {
     const noteId = req.params.id;
 
-    const note = await Note.findById(noteId);
+    const note = await Note.find({ "docId": noteId });
 
     if (!note)
     {
       return res.status(404).json({ message: 'Note not found' });
     }
 
-    res.json(note);
+    res.status(200).json(note);
   } catch (error)
   {
     console.error('Error fetching note details:', error);
@@ -112,7 +110,7 @@ const getNotesByOwner = async (req, res) =>
 {
   try
   {
-    const  id  = req.params.id;
+    const id = req.params.id;
     const notes = await Note.find({ "uid": id.toString() });
 
     res.json(notes);
