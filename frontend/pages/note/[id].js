@@ -7,15 +7,13 @@ import { UserAuth } from '@/utils/auth';
 import { useParams } from 'next/navigation';
 
 
-const NoteDetails = () =>
-{
-    const { id } = useParams();
+const NoteDetails = () => {
+    // const { id } = useParams();
+    const id = 21121;
     const [notes, setNotes] = React.useState([]);
-    useEffect(() =>
-    {
+    useEffect(() => {
         localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')));
-        const fetchData = async () =>
-        {
+        const fetchData = async () => {
             const res = await axios.get(`https://hack-o-rama.onrender.com/get-notes/${id}`);
             const data = await res.json();
             setNotes(data);
@@ -44,8 +42,7 @@ const NoteDetails = () =>
                 <h3 className='text-4xl text-gray-800 font-bold '>{notes.title}</h3>
                 {/* Tags */}
                 <div className='flex items-center mt-4'>
-                    {notes.tags.map(tag =>
-                    {
+                    {notes.tags.map(tag => {
                         <div className='bg-gray-100 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2' key={tag}>{tag}</div>;
 
                     })}
