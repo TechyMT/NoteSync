@@ -12,16 +12,17 @@ const noteSchema = new mongoose.Schema({
   uid: {
     type: String
   },
-  content: {
-    type: String,
-    default: '',
-  },
-  category:{
-    type:String
-  },
-  tags:[
+  content: [
     {
-      type:String
+      type: JSON
+    }
+  ],
+  category: {
+    type: String
+  },
+  tags: [
+    {
+      type: String
     }
   ],
   timestamp: {
