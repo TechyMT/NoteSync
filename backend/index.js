@@ -22,21 +22,6 @@ app.use("/note-api", notesRouter);
 app.use("", defaultRouter);
 
 
-io.on('connection', (socket) => {
-    console.log('User connected:', socket.id);
-
-    // Handle text updates from clients
-    socket.on('text-update', (data) => {
-        // Broadcast the text update to all connected clients
-        io.emit('text-update', data);
-    });
-
-    // Handle disconnects
-    socket.on('disconnect', () => {
-        console.log('User disconnected:', socket.id);
-    });
-});
-
 
 const PORT = process.env.PORT || 8000;
 
