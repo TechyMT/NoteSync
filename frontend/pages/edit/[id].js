@@ -1,30 +1,26 @@
 'use client';
+import axios from "axios";
+import React from "react";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { initialData } from "@/constants/data";
-import React from "react";
-import axios from "axios";
 import publicUrl from "@/utils/publicUrl";
+import { useRouter } from "next/router";
 const Editor = dynamic(() => import("@/components/Editor"), { ssr: false });
 
-function Edit()
-{
+function Edit() {
     const [initData, setInitData] = React.useState(null);
-    const [id, setId] = React.useState(null);
+    const router = useRouter();
+    const { id } = router.query;
 
-    useEffect(() =>
-    {
-
-        const fetchData = async () =>
-        {
+    useEffect(() => {
+        const fetchData = async () => {
             const res = await axios.get(`${publicUrl()}/note/123456798`);
-
             const data = await res.data;
-            const id = data[0].docId;
-            setId(id);
+
             setInitData(data[0].content);
         };
         fetchData();
@@ -41,3 +37,4 @@ function Edit()
 }
 
 export default Edit;
+

@@ -26,7 +26,10 @@ const useAuth = () => {
     const router = useRouter();
 
     useEffect(() => {
-        localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')))
+        const localUser = JSON.parse(localStorage.getItem('user'));
+        if (localUser) {
+            setUser(localUser);
+        }
         if (user) {
             router.push('/dashboard');
         }

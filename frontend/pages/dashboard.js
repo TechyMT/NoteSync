@@ -14,33 +14,27 @@ import { initialData } from '@/constants/data';
 import { useRouter } from 'next/router';
 
 
-const Dashboard = () =>
-{
+const Dashboard = () => {
     const router = useRouter();
     const { user, setUser, signOut } = UserAuth();
     const [notes, setNotes] = React.useState([]);
-    // useEffect(() =>
-    // {
-    //     localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')));
-    //     const fetchData = async () =>
-    //     {
-    //         if (user)
-    //         {
-    //             const res = await axios.get(`https://hack-o-rama.onrender.com/get-notes/${user.uid}`);
-    //             const data = await res.json();
-    //             setNotes(data);
-    //         }
-    //     };
-    //     fetchData();
+    useEffect(() => {
+        console.log(user);
+        const fetchData = async () => {
+            console.log(user);
+            if (user) {
+                const res = await axios.get(`${publicUrl()}/get-notes/${user.uid}`);
+                const data = await res.data;
+                console.log(data);
+                setNotes(data);
+            }
+        };
+        fetchData();
+    }, [user]);
 
-    //     console.log(user);
-    // }, []);
-
-    const handleNewNote = async () =>
-    {
+    const handleNewNote = async () => {
         const docId = Math.floor(Math.random() * 10000000);
-        try
-        {
+        try {
             const res = await axios.post(`${publicUrl()}/note`, {
                 docId: docId.toString(),
                 title: "New Note",
@@ -54,8 +48,7 @@ const Dashboard = () =>
             console.log(res);
 
             router.push(`/edit/123456798`);
-        } catch (error)
-        {
+        } catch (error) {
             console.log(error);
             return;
 
@@ -86,17 +79,12 @@ const Dashboard = () =>
                                         <p className='text-blue-400 font-medium mt-4'>Add Note</p>
                                     </div>
                                 </button>
-                                {/* {
-                                    notes.map((note) =>
-                                    {
-                                        return <Card key={note.id} id={note._id} category={note.category} title={note.title} content={note.content} timestamp={note.timestamp} displayName={user.displayName} />;
+                                {
+                                    notes.map((note) => {
+                                        return <Card key={note._id} id={note.docId} category={note.category} title={note.content[0].content} content={note.content[1].content} timestamp={note.timestamp} displayName={user.displayName} />;
                                     })
-                                } */}
-
-
-
+                                }
                             </div>
-
                             <Footer />
                         </div>
                     </main >

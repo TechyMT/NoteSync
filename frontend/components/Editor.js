@@ -9,24 +9,24 @@ import React, { useEffect } from "react";
 import { initialData } from "@/constants/data";
 
 // Our <Editor> component we can reuse later
-export default function Editor({ data, id })
-{
+export default function Editor({ data, id }) {
     console.log("data", data);
-console.log("id", id);
-    const initData = data.map((block) =>
-    {
+
+    // console.log("id", id);
+    const initData = data.map((block) => {
         return {
+            id: `${block.id}`,
             type: `${block.type}`,
             content: `${block.content}`
         };
     });
     console.log("initData", initData);
     // Creates a new editor instance.
-    const [note, setNote] = React.useState();
+    // const [note, setNote] = React.useState();
     const doc = new Y.Doc();
     const provider = new WebsocketProvider('ws://localhost:1234', 'my-roomname', doc);
     const editor = useBlockNote({
-        initialContent: initData,
+        // initialContent: initData,
         collaboration: {
             provider,
             // Where to store BlockNote data in the Y.Doc:
@@ -34,18 +34,16 @@ console.log("id", id);
             // Information (name and color) for this user:
             user: getRandomUser(),
         },
-        onEditorContentChange: (editor) =>
-        {
-
-            setNote(editor.topLevelBlocks);
+        onEditorContentChange: (editor) => {
+            // setNote(editor.topLevelBlocks);
+            return;
         }        // ...
     });
 
-    const handleSave = async () =>
-    {
+    const handleSave = async () => {
         // const note = localStorage.getItem("editorContent");
         // const res = axios.post(`${publicUrl()}/note`);
-        console.log(note);
+        // console.log(note);
         console.log("saved");
     };
 
@@ -53,12 +51,10 @@ console.log("id", id);
 
     // Renders the editor instance using a React component.
     return (<div>
-
         <div>
             <button onClick={handleSave}>
                 Save
             </button>
-
         </div>
 
         <div >
