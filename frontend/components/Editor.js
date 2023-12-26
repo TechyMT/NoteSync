@@ -5,7 +5,9 @@ import "@blocknote/core/style.css";
 import * as Y from "yjs";
 import { WebsocketProvider } from 'y-websocket';
 import { getRandomUser } from "@/utils/randomuser";
+import publicUrl from '@/utils/publicUrl';
 import React, { useEffect } from "react";
+import axios from "axios";
 import { initialData } from "@/constants/data";
 
 // Our <Editor> component we can reuse later
@@ -24,7 +26,7 @@ export default function Editor({ data, id }) {
     // Creates a new editor instance.
     // const [note, setNote] = React.useState();
     const doc = new Y.Doc();
-    const provider = new WebsocketProvider('ws://localhost:1234', 'my-roomname', doc);
+    const provider = new WebsocketProvider('ws://localhost:1234', `room-${id}`, doc);
     const editor = useBlockNote({
         // initialContent: initData,
         collaboration: {
@@ -42,7 +44,9 @@ export default function Editor({ data, id }) {
 
     const handleSave = async () => {
         // const note = localStorage.getItem("editorContent");
-        // const res = axios.post(`${publicUrl()}/note`);
+        const res = axios.post(`${publicUrl()}/note/${id}`, {
+            content: editor.topLevelBlocks,
+        });
         // console.log(note);
         console.log("saved");
     };
@@ -50,15 +54,11 @@ export default function Editor({ data, id }) {
 
 
     // Renders the editor instance using a React component.
-    return (<div>
-        <div>
-            <button onClick={handleSave}>
-                Save
-            </button>
-        </div>
+    return (
+        <div className="w-screen">
 
-        <div >
-            <BlockNoteView editor={editor} theme={"light"} />
-        </div>
-    </div>);
+            <div>
+                <BlockNoteView editor={editor} theme={"light"} />
+            </div >
+        </div >);
 };

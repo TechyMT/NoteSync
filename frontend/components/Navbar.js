@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { MdKeyboardArrowDown, MdOutlineNotifications } from 'react-icons/md';
 
-const Navbar = () =>
-{
+const Navbar = () => {
     const { user, signOut } = UserAuth();
     const [display, setDisplay] = useState(false);
     console.log(user);
@@ -29,7 +28,7 @@ const Navbar = () =>
                 </div>
                 <button onClick={() => setDisplay(!display)} className="rounded-full flex items-center justify-center  h-10 bg-blue-200 px-2 py-1 ">
                     <img src="/user.png" alt="user.png" className='h-8 w-8 rounded-full' />
-                    <span className='w-20 text-ellipsis font-medium text-gray-800 mb-0'>{user.displayName.split(" ")[0] || "Lorem"}</span>
+                    <span className='w-20 text-ellipsis font-medium text-gray-800 mb-0'>{user ? user.displayName?.split(" ")[0] : "Lorem"}</span>
                     <MdKeyboardArrowDown />
                 </button>
                 <div className={`${display ? "block" : "hidden"}  dropdown w-32 px-3 py-2 absolute right-0 top-12 bg-white shadow-lg rounded-md`}>

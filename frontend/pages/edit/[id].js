@@ -18,10 +18,12 @@ function Edit() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get(`${publicUrl()}/note/123456798`);
-            const data = await res.data;
+            const res = await axios.get(`${publicUrl()}/note/${id}`);
+            console.log("Res", res)
 
+            const data = await res.data;
             setInitData(data[0].content);
+            console.log(data);
         };
         fetchData();
     }, []);
@@ -29,7 +31,7 @@ function Edit() {
         <div className="p-12">
             <div className="flex">
                 <div>
-                    <Editor data={initData} id={id} />
+                    {initData && <Editor data={initData} id={id} />}
                 </div>
             </div>
         </div>
