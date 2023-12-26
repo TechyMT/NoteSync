@@ -96,6 +96,7 @@ const updateNote = async (req, res) =>
     existingNote.content = content;
     existingNote.category = category;
     existingNote.tags = tags;
+    existingNote.timestamp = Date.now();
 
     // Save the updated note
     const updatedNote = await existingNote.save();
