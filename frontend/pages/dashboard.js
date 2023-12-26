@@ -14,15 +14,19 @@ import { initialData } from '@/constants/data';
 import { useRouter } from 'next/router';
 
 
-const Dashboard = () => {
+const Dashboard = () =>
+{
     const router = useRouter();
     const { user, setUser, signOut } = UserAuth();
     const [notes, setNotes] = React.useState([]);
-    useEffect(() => {
+    useEffect(() =>
+    {
         console.log(user);
-        const fetchData = async () => {
+        const fetchData = async () =>
+        {
             console.log(user);
-            if (user) {
+            if (user)
+            {
                 const res = await axios.get(`${publicUrl()}/get-notes/${user.uid}`);
                 const data = await res.data;
                 console.log(data);
@@ -32,9 +36,11 @@ const Dashboard = () => {
         fetchData();
     }, [user]);
 
-    const handleNewNote = async () => {
+    const handleNewNote = async () =>
+    {
         const docId = Math.floor(Math.random() * 10000000);
-        try {
+        try
+        {
             const res = await axios.post(`${publicUrl()}/note`, {
                 docId: docId.toString(),
                 title: "New Note",
@@ -47,8 +53,9 @@ const Dashboard = () => {
 
             console.log(res);
 
-            router.push(`/edit/123456798`);
-        } catch (error) {
+            router.push(`/edit/${docId}`);
+        } catch (error)
+        {
             console.log(error);
             return;
 
@@ -80,7 +87,8 @@ const Dashboard = () => {
                                     </div>
                                 </button>
                                 {
-                                    notes.map((note) => {
+                                    notes.map((note) =>
+                                    {
                                         return <Card key={note._id} id={note.docId} category={note.category} title={note.content[0].content} content={note.content[1].content} timestamp={note.timestamp} displayName={user.displayName} />;
                                     })
                                 }
