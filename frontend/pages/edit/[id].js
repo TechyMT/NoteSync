@@ -11,16 +11,13 @@ import publicUrl from "@/utils/publicUrl";
 import { useRouter } from "next/router";
 const Editor = dynamic(() => import("@/components/Editor"), { ssr: false });
 
-function Edit()
-{
+function Edit() {
     const [initData, setInitData] = React.useState(null);
     const router = useRouter();
     const { id } = router.query;
 
-    useEffect(() =>
-    {
-        const fetchData = async () =>
-        {
+    useEffect(() => {
+        const fetchData = async () => {
             const res = await axios.get(`${publicUrl()}/note/${id}`);
             // console.log("Res", res);
 
@@ -32,18 +29,15 @@ function Edit()
         fetchData();
     }, []);
     return (
-        <div className="p-12">
-            <div className="flex">
-                <div>
-                    {initData && <Editor data={initData} id={id} />}
-                </div>
-            </div>
+        <div className="">
+
+            {initData && <Editor data={initData} id={id} />}
+
         </div>
     );
 }
 
-export async function getServerSideProps(context)
-{
+export async function getServerSideProps(context) {
     return {
         props: {}, // will be passed to the page component as props
     };
