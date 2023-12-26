@@ -11,34 +11,28 @@ import { useRouter } from 'next/router';
 
 const mulish = Mulish({ subsets: ['latin'] });
 
-export default function Home()
-{
+export default function Home() {
 
   const { user, setUser, googleSignIn, signInGithub, emailSignIn } = UserAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleGoogleSignIn = () =>
-  {
+  const handleGoogleSignIn = () => {
     googleSignIn();
   };
-  const handleGithubSignIn = () =>
-  {
+  const handleGithubSignIn = () => {
     signInGithub();
   };
 
-  const handleEmailSignIn = () =>
-  {
+  const handleEmailSignIn = () => {
     emailSignIn(email, password);
 
   };
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')));
-    if (user)
-    {
+    if (user) {
       router.push('/dashboard');
     }
     console.log(user);

@@ -1,47 +1,34 @@
-const User = require('./user');
 const mongoose = require('mongoose');
 
-const commentSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
-  content: {
+const noteSchema = new mongoose.Schema({
+  docId: {
     type: String,
     required: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
-
-const noteSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
   },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
+  uid: {
+    type: String
   },
-  collaborators: [
+  content: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-    },
+      type: JSON
+    }
   ],
-  description: {
-    type: String,
-    default: '',
+  category: {
+    type: String
   },
-  content: {
-    type: String,
-    default: '',
+  tags: [
+    {
+      type: String
+    }
+  ],
+  timestamp: {
+    type: Date,
+    default: Date.now,
   },
-  comments: [commentSchema], 
 });
 
 const Note = mongoose.model('Note', noteSchema);

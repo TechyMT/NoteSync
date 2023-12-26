@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"edit\\\\[id].js -> @/components/Editor\":{\"id\":\"edit\\\\[id].js -> @/components/Editor\",\"files\":[\"static/chunks/components_Editor_js.js\"]}}"
