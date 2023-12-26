@@ -82,9 +82,9 @@ const updateNote = async (req, res) =>
   try
   {
     const noteId = req.params.id;
-    const { content } = req.body;
+    const { content, category, tags } = req.body;
 
-    const existingNote = await Note.find({"docId": noteId});
+    const existingNote = await Note.find({ "docId": noteId });
 
     if (!existingNote)
     {
@@ -92,9 +92,11 @@ const updateNote = async (req, res) =>
     }
 
     // Update note data
-    
+
     existingNote.content = content;
-    
+    existingNote.category = category;
+    existingNote.tags = tags;
+
     // Save the updated note
     const updatedNote = await existingNote.save();
 
