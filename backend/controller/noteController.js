@@ -82,9 +82,9 @@ const updateNote = async (req, res) =>
   try
   {
     const noteId = req.params.id;
-    const { title, content, description, collaborators } = req.body;
+    const { content } = req.body;
 
-    const existingNote = await Note.findById(noteId);
+    const existingNote = await Note.find({"docId": noteId});
 
     if (!existingNote)
     {
@@ -92,15 +92,13 @@ const updateNote = async (req, res) =>
     }
 
     // Update note data
-    existingNote.title = title;
+    
     existingNote.content = content;
-    existingNote.description = description || existingNote.description;
-    existingNote.collaborators = collaborators || existingNote.collaborators;
-
+    
     // Save the updated note
     const updatedNote = await existingNote.save();
 
-    res.json(updatedNote);
+    res.status(201).json(updatedNote);
   } catch (error)
   {
     console.error('Error updating note:', error);
