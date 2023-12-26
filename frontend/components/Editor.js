@@ -26,7 +26,7 @@ export default function Editor({ data, id })
     // Creates a new editor instance.
     // const [note, setNote] = React.useState();
     const doc = new Y.Doc();
-    const provider = new WebsocketProvider('ws://localhost:1234', `room-${id}`, doc);
+    const provider = new WebsocketProvider(`ws://${process.env.WEB_SOCKET_URL}`, `room-${id}`, doc);
     const editor = useBlockNote({
         initialContent: initData,
         collaboration: {
