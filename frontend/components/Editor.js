@@ -29,7 +29,7 @@ export default function Editor({ data, id }) {
     });
     // console.log("initData", initData);
     const doc = new Y.Doc();
-    const provider = new WebsocketProvider(`ws://websocket-im9l.onrender.com`, `room-${id}`, doc);
+    const provider = new WebsocketProvider(`wss://websocket-im9l.onrender.com`, `room-${id}`, doc);
 
 
 
