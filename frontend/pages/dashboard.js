@@ -2,7 +2,7 @@
 import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
 import { UserAuth } from '@/utils/auth';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@/components/Card';
 import { MdAdd } from 'react-icons/md';
 import Loading from '@/components/Loading';
@@ -12,35 +12,33 @@ import axios from 'axios';
 import publicUrl from '@/utils/publicUrl';
 import { initialData } from '@/constants/data';
 import { useRouter } from 'next/router';
+import useNotesStore from '@/store/notesStore';
 
 
-const Dashboard = () =>
-{
+const Dashboard = () => {
     const router = useRouter();
     const { user, setUser, signOut } = UserAuth();
-    const [notes, setNotes] = React.useState([]);
-    useEffect(() =>
-    {
+    const { notes, category, setNotes } = useNotesStore();
+    const [notesData, setNotesData] = useState([]);
+
+    useEffect(() => {
         console.log(user);
-        const fetchData = async () =>
-        {
+        const fetchData = async () => {
             console.log(user);
-            if (user)
-            {
+            if (user) {
                 const res = await axios.get(`${publicUrl()}/get-notes/${user.uid}`);
                 const data = await res.data;
                 console.log(data);
                 setNotes(data);
+                setNotesData(data);
             }
         };
         fetchData();
     }, [user]);
 
-    const handleNewNote = async () =>
-    {
+    const handleNewNote = async () => {
         const docId = Math.floor(Math.random() * 10000000);
-        try
-        {
+        try {
             const res = await axios.post(`${publicUrl()}/note`, {
                 docId: docId.toString(),
                 title: "New Note",
@@ -49,19 +47,28 @@ const Dashboard = () =>
                 category: "frontend",
                 tags: ["tag"]
             });
-
-
             console.log(res);
-
             router.push(`/edit/${docId}`);
-        } catch (error)
-        {
+        } catch (error) {
             console.log(error);
             return;
 
         }
-
     };
+
+
+    //handle filter
+    useEffect(() => {
+        if (!category) return setNotesData(notes);
+        const filterNotes = async () => {
+            //filter notes array 
+            const filteredNotes = await notes.filter((note) => note.category === category.title);
+            setNotesData(filteredNotes);
+            console.log(filteredNotes);
+        };
+        filterNotes();
+        console.log(notesData)
+    }, [category]);
 
     return (
         <>
@@ -73,7 +80,7 @@ const Dashboard = () =>
                             <div className="px-6">
                                 <Navbar />
                                 {/* Heading Section */}
-                                <Header />
+                                <Header count={notesData.length} />
                                 {/* Notes Section */}
                             </div>
                             <div className="notes px-6 py-4  mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -87,8 +94,7 @@ const Dashboard = () =>
                                     </div>
                                 </button>
                                 {
-                                    notes.map((note) =>
-                                    {
+                                    notesData.map((note) => {
                                         return <Card key={note._id} id={note.docId} category={note.category} title={note.content[0].content} content={note.content[1].content} timestamp={note.timestamp} displayName={user.displayName} />;
                                     })
                                 }

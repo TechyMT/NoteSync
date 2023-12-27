@@ -9,12 +9,18 @@ import { MdEdit, MdSave } from 'react-icons/md'
 import publicUrl from '@/utils/publicUrl';
 import React from "react";
 import axios from "axios";
+import EditorSidebar from "./EditorSidebar";
+import EditorInfo from "./EditorInfo";
+
 
 // Our <Editor> component we can reuse later
 export default function Editor({ data, id }) {
-    console.log("data", data);
+    console.log("data,", data);
 
-    const initData = data.map((block) => {
+    //content is the doc where docId == id
+    const content = data.content;
+
+    const initData = content.map((block) => {
         return {
             id: `${block.id}`,
             type: `${block.type}`,
@@ -22,10 +28,11 @@ export default function Editor({ data, id }) {
         };
     });
     // console.log("initData", initData);
-    // Creates a new editor instance.
-    // const [note, setNote] = React.useState();
     const doc = new Y.Doc();
-    const provider = new WebsocketProvider(`ws://${process.env.WEB_SOCKET_URL}`, `room-${id}`, doc);
+    const provider = new WebsocketProvider(`ws://localhost:1234`, `room-${id}`, doc);
+
+
+
     const editor = useBlockNote({
         initialContent: initData,
         collaboration: {
@@ -36,11 +43,10 @@ export default function Editor({ data, id }) {
             user: getRandomUser(),
         },
         onEditorContentChange: (editor) => {
-            git
-            // setNote(editor.topLevelBlocks);
-            console.log()
+            //To handkle changes
+            console.log(provider)
             return;
-        }        // ...
+        }
     });
 
     const handleSave = async () => {
@@ -73,21 +79,13 @@ export default function Editor({ data, id }) {
                 </div>
             </div>
             <div className="flex">
-                <div className="w-2/12 border-r border-gray-200"></div>
-                <div className="w-8/12">
+                <EditorSidebar active={data.docId} />
+                <div className="w-8/12 ">
                     <div className="conatiner  mx-auto py-24 px-4 sm:px-6 lg:px-8 min-h-screen">
                         <BlockNoteView editor={editor} theme={"light"} />
                     </div>
                 </div>
-                <div className="w-2/12 pt-20 p-4 border-l border-gray-200">
-                    <h2 className="font-medium">Tags</h2>
-                    <div className="flex gap-2 py-2">
-
-                        <span class="bg-indigo-200 text- text-xs font-medium me-2 px-2.5 py-0.5 rounded-full  ">Indigo</span>
-                        <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-100">Dark</span>
-                    </div>
-
-                </div>
+                <EditorInfo tags={data.tags} category={data.category} />
             </div>
         </div>
     );

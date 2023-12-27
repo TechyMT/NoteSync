@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 const Editor = dynamic(() => import("@/components/Editor"), { ssr: false });
 
 function Edit() {
-    const [initData, setInitData] = React.useState(null);
+    const [noteData, setNoteData] = React.useState(null);
     const router = useRouter();
     const { id } = router.query;
 
@@ -21,9 +21,9 @@ function Edit() {
             const res = await axios.get(`${publicUrl()}/note/${id}`);
             // console.log("Res", res);
 
-            const data = await res.data;
+            const data = await res.data[0];
             console.log(data);
-            data && setInitData(data[0].content);
+            data && setNoteData(data);
             console.log(data);
         };
         fetchData();
@@ -31,7 +31,7 @@ function Edit() {
     return (
         <div className="">
 
-            {initData && <Editor data={initData} id={id} />}
+            {noteData && <Editor data={noteData} id={id} />}
 
         </div>
     );

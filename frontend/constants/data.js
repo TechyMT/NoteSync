@@ -11,39 +11,39 @@ export const navList = [
 export const categories = [
     {
         "color": "bg-red-500",
-        "title": "UI"
+        "title": "ui"
     },
     {
         "color": "bg-yellow-500",
-        "title": "UX"
+        "title": "ux"
     },
     {
         "color": "bg-green-500",
-        "title": "Frontend"
+        "title": "frontend"
     },
     {
         "color": "bg-blue-500",
-        "title": "Backend"
+        "title": "backend"
     },
     {
         "color": "bg-indigo-500",
-        "title": "Fullstack"
+        "title": "fullstack"
     },
     {
         "color": "bg-purple-500",
-        "title": "DevOps"
+        "title": "devops"
     },
     {
         "color": "bg-pink-500",
-        "title": "Testing"
+        "title": "testing"
     },
     {
         "color": "bg-teal-500",
-        "title": "Design"
+        "title": "design"
     },
     {
         "color": "bg-red-500",
-        "title": "Security"
+        "title": "security"
     }
 ];
 
