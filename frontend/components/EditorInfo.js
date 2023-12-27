@@ -11,9 +11,9 @@ const EditorInfo = ({ tags, category }) => {
             <h2 className="font-medium"><span className="text-gray-400">#</span> Tags</h2>
             <div className="flex gap-2 py-2">
                 {
-                    tags.map((tag) => {
+                    tags.map((tag, index) => {
                         return (
-                            <div className="bg-gray-200 px-2 py-1 rounded-full text-xs font-medium">{tag}</div>
+                            <div key={index} className="bg-gray-200 px-2 py-1 rounded-full text-xs font-medium">{tag}</div>
                         )
                     })
                 }
