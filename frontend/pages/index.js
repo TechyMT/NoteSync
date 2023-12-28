@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Mulish } from 'next/font/google';
+import { Mulish, Outfit } from 'next/font/google';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { Toaster } from "react-hot-toast";
@@ -9,36 +9,30 @@ import { useRouter } from 'next/router';
 
 
 
-const mulish = Mulish({ subsets: ['latin'] });
+const outfit = Outfit({ subsets: ['latin'] });
 
-export default function Home()
-{
+export default function Home() {
 
   const { user, setUser, googleSignIn, signInGithub, emailSignIn } = UserAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleGoogleSignIn = () =>
-  {
+  const handleGoogleSignIn = () => {
     googleSignIn();
   };
-  const handleGithubSignIn = () =>
-  {
+  const handleGithubSignIn = () => {
     signInGithub();
   };
 
-  const handleEmailSignIn = () =>
-  {
+  const handleEmailSignIn = () => {
     emailSignIn(email, password);
 
   };
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     localStorage.getItem('user') && setUser(JSON.parse(localStorage.getItem('user')));
-    if (user)
-    {
+    if (user) {
       router.push('/dashboard');
     }
     console.log(user);
@@ -46,7 +40,7 @@ export default function Home()
 
 
   return (
-    <main className={`w-screen flex ${mulish.className}`}>
+    <main className={`w-screen flex ${outfit.className}`}>
 
       <Toaster
         position="top-center"

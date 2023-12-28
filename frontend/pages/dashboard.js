@@ -13,9 +13,12 @@ import publicUrl from '@/utils/publicUrl';
 import { initialData } from '@/constants/data';
 import { useRouter } from 'next/router';
 import useNotesStore from '@/store/notesStore';
+import { Outfit } from 'next/font/google';
 
 
+const outfit = Outfit({ subsets: ['latin'] });
 const Dashboard = () => {
+
     const router = useRouter();
     const { user, setUser, signOut } = UserAuth();
     const { notes, category, setNotes } = useNotesStore();
@@ -74,9 +77,9 @@ const Dashboard = () => {
         <>
             {
                 user ?
-                    <main className='conatiner flex bg-gray-100 h-screen'>
+                    <main className={`${outfit.className} conatiner flex bg-gray-100 h-screen `}>
                         < Sidebar />
-                        <div className="w-5/6 overflow-y-scroll ">
+                        <div className="w-full overflow-y-scroll ">
                             <div className="px-6">
                                 <Navbar />
                                 {/* Heading Section */}

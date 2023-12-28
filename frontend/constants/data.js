@@ -1,10 +1,12 @@
-import { MdDelete, MdDashboard, MdErrorOutline, MdToday } from "react-icons/md";
+import { HiOutlineHome, HiOutlineFolderDownload, HiOutlineStar, HiOutlineCog } from "react-icons/hi";
+import { HiMiniHashtag } from "react-icons/hi2";
 
 export const navList = [
-    { title: "Overview", icon: <MdDashboard className='text-xl' /> },
-    { title: "Today", icon: <MdToday className='text-xl' /> },
-    { title: "Important", icon: <MdErrorOutline className='text-xl' /> },
-    { title: "Trash", icon: <MdDelete className='text-xl' /> },
+    { title: "Home", icon: <HiOutlineHome className='text-xl' /> },
+    { title: "Important", icon: <HiOutlineStar className='text-xl' /> },
+    { title: "Archive", icon: <HiOutlineFolderDownload className='text-xl' /> },
+    { title: "Tags", icon: <HiMiniHashtag className='text-xl' /> },
+    { title: "Settings", icon: <HiOutlineCog className='text-xl' /> },
 ];
 
 

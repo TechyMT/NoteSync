@@ -58,3 +58,7 @@ div.ql-clipboard {
   background: #ddd;
   /* Change the background color of the track on hover */
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
