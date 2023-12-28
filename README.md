@@ -1,17 +1,16 @@
 # NoteSync - Built at Hack-O-Rama 
-# Team - TechWing
-# Collabarators :
-  
-   1. Yadhnesh Gangurde
-   2. Mustafa Truckwala
-   3. Ayush Bulbule
-   4. Khushi Nikam
 
 ## 1. Introduction
 
 **Note Sync** is an interactive web application built using continue
 
-## 2. Tech Stack
+## 2. Collaborators  
+   1. Yadhnesh Gangurde
+   2. Mustafa Truckwala
+   3. Ayush Bulbule
+   4. Khushi Nikam
+      
+## 3. Tech Stack
 ![ReactJS](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) (Next Js)
 
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
@@ -22,12 +21,13 @@
 
 ![Nodejs](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 
-## 3. Features
+## 4. Features
 
 1. Real-time Collaboration: Users can collaborate in real-time, seeing each other's changes instantly.
 2. User-friendly Interface: An intuitive and easy-to-use interface for a smooth note-taking experience.
 3. Markdown Support: Write notes with the flexibility of markdown formatting.
-## 4. Setup Locally
+
+## 5. Setup Locally
 
 Clone the repo `git clone https://github.com/Ayush-Bulbule/FashionStore/`
 ### Frontend:
@@ -45,7 +45,7 @@ Clone the repo `git clone https://github.com/Ayush-Bulbule/FashionStore/`
 
 
 
-## 5. Screenshots
+## 6. Screenshots
 
    
   **1. User Login**
@@ -66,5 +66,5 @@ Clone the repo `git clone https://github.com/Ayush-Bulbule/FashionStore/`
 
 
 
-## 6. Deployment
-Project is deployed at:[ https://kanban-board-ayush.vercel.app/](https://note-sync-techwing.vercel.app/) 
+## 7. Deployment
+Project is deployed at:[NoteSync](https://note-sync-techwing.vercel.app/) 
