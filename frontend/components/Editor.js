@@ -32,7 +32,7 @@ export default function Editor({ data, id }) {
 
 
     const editor = useBlockNote({
-        initialContent: initData,
+        // initialContent: initData,
         collaboration: {
             provider,
             // Where to store BlockNote data in the Y.Doc:
