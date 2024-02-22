@@ -26,7 +26,7 @@ app.use("", defaultRouter);
 
 cron.schedule("15 * * * *", () =>
 {
-    console.log("Sending scheduled request");
+    console.log("Sending scheduled request at ", new Date());
     request('https://hack-o-rama.onrender.com/ping', function (error, response, body)
     {
         if (!error && response.statusCode == 200)
