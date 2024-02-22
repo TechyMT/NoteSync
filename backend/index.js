@@ -24,7 +24,7 @@ app.use("/api", notesRouter);
 app.use("", defaultRouter);
 
 
-cron.schedule("* * * * *", () =>
+cron.schedule("15 * * * *", () =>
 {
     console.log("Sending scheduled request");
     request('https://hack-o-rama.onrender.com/ping', function (error, response, body)
