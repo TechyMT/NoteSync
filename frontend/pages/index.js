@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Mulish, Outfit } from 'next/font/google';
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaMoon, FaSun } from "react-icons/fa";
 import { Toaster } from "react-hot-toast";
+import { motion } from "framer-motion";
 import { AuthContext, UserAuth } from '@/utils/auth';
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
+import { useTheme } from 'next-themes';
 
 
 
@@ -13,6 +15,7 @@ const outfit = Outfit({ subsets: ['latin'] });
 
 export default function Home() {
 
+  const { theme, setTheme } = useTheme();
   const { user, setUser, googleSignIn, signInGithub, emailSignIn } = UserAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -47,27 +50,26 @@ export default function Home() {
         reverseOrder={false}
       />
       {/* Section 1: Vector and Text */}
-      <div className="hidden lg:flex  px-16 py-10 flex-col lg:w-1/2  bg-blue-50  h-screen">
+      <div className="hidden lg:flex  px-16 py-10 flex-col lg:w-1/2  bg-blue-50 dark:bg-slate-900  h-screen">
         <div className="header flex ">
           <img src="/applogo.jpeg" alt="Logo" className='h-16 w-16 rounded-md shadow-md ' />
         </div>
-
         <img src="/login-vector.svg" alt="LoginVector" className='mx-16' />
       </div>
 
       {/* Section 2: Login and Register */}
-      <div className="w-full lg:w-1/2 py-8 px-6 lg:py-24 lg:px-0 h-screen flex items-center justify-center">
+      <div className="w-full relative lg:w-1/2 py-8 px-6 lg:py-24 lg:px-0 h-screen flex items-center justify-center dark:bg-slate-950">
         <div className="inner-box w-full lg:w-6/12 h-full">
-          <h3 className='text-3xl font-bold text-gray-900 '>Login to NoteSync</h3>
+          <h3 className='text-3xl font-bold text-gray-900 dark:text-gray-100'>Login to NoteSync</h3>
           <p className='text-xs mt-2 font-medium'>Please enter your credentials to login to NoteSync.</p>
           <div className="form mt-8">
             <div class="mb-6">
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Email</label>
-              <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-2 focus:border-blue-500 block w-full p-2.5 outline-none" placeholder="john.doe@company.com" required />
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
+              <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" id="email" class="bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-gray-700 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-2 focus:border-blue-500 block w-full p-2.5 outline-none" placeholder="john.doe@company.com" required />
             </div>
             <div class="mb-6">
-              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-              <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-2 focus:border-blue-500 block w-full p-2.5 outline-none" placeholder="123****" required />
+              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
+              <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" id="email" class="bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-gray-700 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-2 focus:border-blue-500 block w-full p-2.5 outline-none" placeholder="123****" required />
             </div>
             <div className="mb-6 flex justify-between mt-6">
               <div className="flex items-center gap-2">
@@ -88,6 +90,11 @@ export default function Home() {
               <FaGithub className='text-xl' />
               Sign in with Github
             </button>
+
+
+            <motion.div whileTap={{ scale: 0.9 }} className="mt-6 text-center absolute bottom-8 right-6 cursor-pointer border border-gray-500 rounded-full p-2" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+              {theme === 'dark' ? <motion.div animate={{ rotate: 0 }} transition={{ duration: 0.4 }}><FaSun className='text-2xl' /></motion.div> : <motion.div animate={{ rotate: 360 }} transition={{ duration: 0.3 }}> <FaMoon className='text-2xl ' /></motion.div>}
+            </motion.div>
           </div>
         </div>
       </div>

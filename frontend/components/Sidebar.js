@@ -10,7 +10,6 @@ const Sidebar = () => {
             <div className="top">
                 <div className="logo flex justify-between py-4 items-center transition-all">
                     <div onClick={() => setClosed(!closed)} className='flex justify-between w-full'>
-
                         {
                             closed ? (
                                 <img src="/applogo-tp.png" alt="" className={`  w-10 h-10 mx-auto`} />
