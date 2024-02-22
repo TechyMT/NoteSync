@@ -82,25 +82,25 @@ const updateNote = async (req, res) =>
   try
   {
     const noteId = req.params.id;
-    const { title, content, description, collaborators } = req.body;
+    const { title, content, category, tags } = req.body;
 
-    const existingNote = await Note.findById(noteId);
+    const existingNote = await Note.findOneAndUpdate({ "docId": noteId }, {
+      title: title,
+      content: content,
+      category: category,
+      tags: tags,
+      timestamp: Date.now()
+    });
 
     if (!existingNote)
     {
       return res.status(404).json({ message: 'Note not found' });
     }
-
     // Update note data
-    existingNote.title = title;
-    existingNote.content = content;
-    existingNote.description = description || existingNote.description;
-    existingNote.collaborators = collaborators || existingNote.collaborators;
-
     // Save the updated note
     const updatedNote = await existingNote.save();
 
-    res.json(updatedNote);
+    res.status(201).json(updatedNote);
   } catch (error)
   {
     console.error('Error updating note:', error);
