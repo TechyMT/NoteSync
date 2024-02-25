@@ -27,7 +27,7 @@ const Sidebar = () => {
                             closed ? (
                                 <img src="/applogo-tp.png" alt="" className={`  w-10 h-10 mx-auto`} />
                             ) : (
-                                <div className={` text-slate-900 font-mulish ml-6 font-semibold text-2xl`}>NoteSync</div>
+                                <div className={` text-slate-900 dark:text-gray-200 font-mulish ml-6 font-semibold text-2xl`}>NoteSync</div>
                             )
                         }
                     </div>

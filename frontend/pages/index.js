@@ -64,13 +64,13 @@ export default function Home() {
           <h3 className='text-3xl font-bold text-gray-900 dark:text-gray-100'>Login to NoteSync</h3>
           <p className='text-xs mt-2 font-medium'>Please enter your credentials to login to NoteSync.</p>
           <div className="form mt-8">
-            <div class="mb-6">
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
-              <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" id="email" class="bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-gray-700 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-2 focus:border-blue-500 block w-full p-2.5 outline-none" placeholder="john.doe@company.com" required />
+            <div className="mb-6">
+              <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
+              <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" id="email" className="bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-gray-700 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-2 focus:border-blue-500 block w-full p-2.5 outline-none" placeholder="john.doe@company.com" required />
             </div>
-            <div class="mb-6">
-              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
-              <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" id="email" class="bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-gray-700 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-2 focus:border-blue-500 block w-full p-2.5 outline-none" placeholder="123****" required />
+            <div className="mb-6">
+              <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
+              <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" id="email" className="bg-gray-50 dark:bg-slate-900 border border-gray-300 dark:border-gray-700 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-2 focus:border-blue-500 block w-full p-2.5 outline-none" placeholder="123****" required />
             </div>
             <div className="mb-6 flex justify-between mt-6">
               <div className="flex items-center gap-2">
@@ -79,15 +79,15 @@ export default function Home() {
               </div>
               <div className="font-medium text-sm">Forgot Password?</div>
             </div>
-            <button onClick={handleEmailSignIn} type="button" class="mb-6 px-3 py-2 w-full text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-2 focus:ring-offset-1 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+            <button onClick={handleEmailSignIn} type="button" className="mb-6 px-3 py-2 w-full text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-2 focus:ring-offset-1 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
             <hr />
             {/* Sign in with Google */}
-            <button onClick={handleGoogleSignIn} type="button" class="text-black mt-6 bg-gray-200 dark:bg-gray-300 hover:bg-gray-300 items-center justify-center gap-2 w-full focus:ring-2 focus:ring-offset-1 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex dark:focus:ring-[#4285F4]/55 me-2 mb-2">
+            <button onClick={handleGoogleSignIn} type="button" className="text-black mt-6 bg-gray-200 dark:bg-gray-300 hover:bg-gray-300 items-center justify-center gap-2 w-full focus:ring-2 focus:ring-offset-1 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex dark:focus:ring-[#4285F4]/55 me-2 mb-2">
               <FcGoogle className='text-xl' />
               Sign in with Google
             </button>
             {/* Sign in with Google */}
-            <button onClick={handleGithubSignIn} type="button" class="text-black mt-3 bg-gray-200 dark:bg-gray-300 hover:bg-gray-300 items-center justify-center gap-2 w-full focus:ring-2 focus:ring-offset-1 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex dark:focus:ring-[#4285F4]/55 me-2 mb-2">
+            <button onClick={handleGithubSignIn} type="button" className="text-black mt-3 bg-gray-200 dark:bg-gray-300 hover:bg-gray-300 items-center justify-center gap-2 w-full focus:ring-2 focus:ring-offset-1 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex dark:focus:ring-[#4285F4]/55 me-2 mb-2">
               <FaGithub className='text-xl' />
               Sign in with Github
             </button>

@@ -36,8 +36,9 @@ const Dashboard = () => {
                 setNotesData(data);
             }
         };
+
         fetchData();
-    }, [user]);
+    }, []);
 
     const handleNewNote = async () => {
         const docId = Math.floor(Math.random() * 10000000);
@@ -67,7 +68,8 @@ const Dashboard = () => {
             //filter notes array 
             const filteredNotes = await notes.filter((note) => note.category === category.title);
             setNotesData(filteredNotes);
-            console.log(filteredNotes);
+            console.log("Data From Server")
+            console.log(notes);
         };
         filterNotes();
         console.log(notesData)
@@ -97,7 +99,7 @@ const Dashboard = () => {
                                     </div>
                                 </button>
                                 {
-                                    notesData.map((note) => {
+                                    notesData && notesData.map((note) => {
                                         return <Card key={note._id} id={note.docId} category={note.category} title={note.content[0].content} content={note.content[1].content} timestamp={note.timestamp} displayName={user.displayName} />;
                                     })
                                 }
