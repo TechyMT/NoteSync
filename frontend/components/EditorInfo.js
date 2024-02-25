@@ -2,7 +2,7 @@ import React from 'react'
 
 const EditorInfo = ({ tags, category }) => {
     return (
-        <div className="hidden lg:block lg:w-2/12  pt-20 p-4 border-l border-gray-200">
+        <div className="hidden w-2/12 lg:block lg:w-2/12  pt-20 p-4">
             <h2 className="font-medium"><span className="text-gray-400">●</span> Category - <span className="capitalize">{category}</span></h2>
             <div className="flex flex-col gap-2 p-2">
                 <p className="text-sm"></p>

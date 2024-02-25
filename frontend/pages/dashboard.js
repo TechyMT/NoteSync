@@ -72,7 +72,7 @@ const Dashboard = () => {
             console.log(notes);
         };
         filterNotes();
-        console.log(notesData)
+        console.log(notesData);
     }, [category]);
 
     return (
@@ -80,27 +80,25 @@ const Dashboard = () => {
             {
                 user ?
                     <main className={`${outfit.className} conatiner flex bg-gray-100 h-screen dark:bg-gray-800 `}>
-                        < Sidebar />
+                        <Sidebar />
                         <div className="w-full overflow-y-scroll ">
-                            <div className="px-6">
-                                <Navbar />
-                                {/* Heading Section */}
-                                <Header count={notesData.length} />
-                                {/* Notes Section */}
-                            </div>
+                            <Navbar />
+                            {/* Heading Section */}
+                            <Header count={notesData.length} />
+                            {/* Notes Section */}
                             <div className="notes px-6 py-4 min-h-[70vh] items-start mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                 {/* Add New Note */}
                                 <button onClick={handleNewNote}>
                                     <div className=" cursor-pointer note-card flex items-center justify-center bg-white dark:bg-gray-900 rounded-lg shadow-md flex-col p-4">
-                                        <div className="border-2 flex items-center justify-center border-dashed border-blue-400 rounded-full h-32 w-32">
+                                        <div className="border-2 flex items-center justify-center border-dashed border-blue-400 rounded-full h-28 w-28">
                                             <MdAdd className='text-3xl' />
                                         </div>
                                         <p className='text-blue-400 font-medium mt-4'>Add Note</p>
                                     </div>
                                 </button>
                                 {
-                                    notesData && notesData.map((note) => {
-                                        return <Card key={note._id} id={note.docId} category={note.category} title={note.content[0].content} content={note.content[1].content} timestamp={note.timestamp} displayName={user.displayName} />;
+                                    notesData.map((note) => {
+                                        return <Card key={note._id} id={note.docId} category={note.category} title={note.title} content={note.content[1].content.text} timestamp={note.timestamp} displayName={user.displayName} />;
                                     })
                                 }
                             </div>

@@ -1,64 +1,76 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
 
-/* Let cursor flags show on the first line */
-div.ql-container {
-  overflow: unset;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+ 
+    --primary: 220.9 39.3% 11%;
+    --primary-foreground: 210 20% 98%;
+ 
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+ 
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+ 
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 224 71.4% 4.1%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+ 
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+ 
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+ 
+    --primary: 210 20% 98%;
+    --primary-foreground: 220.9 39.3% 11%;
+ 
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+ 
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+ 
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+ 
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 216 12.2% 83.9%;
+  }
 }
-
-/* Remove editor focus */
-div.ql-editor:focus {
-  outline: none;
-}
-
-/* Hide non-visible clipboard element */
-div.ql-clipboard {
-  left: -100000px;
-  height: 1px;
-  overflow-y: hidden;
-  position: absolute;
-  top: 50%;
-}
-
-
-/* Scrollbars */
-/* Track */
-::-webkit-scrollbar {
-  width: 6px;
-  /* Set the width of the scrollbar */
-}
-
-/* Thumb */
-::-webkit-scrollbar-thumb {
-  background: #0a93a5;
-  width: 6px;
-  margin: 0 4px;
-  /* Background color of the thumb */
-  border-radius: 6px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  /* Rounded corners for the thumb */
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-  /* Change the background color on hover */
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  width: 6px;
-  /* Background color of the track */
-}
-
-/* Track on hover */
-::-webkit-scrollbar-track:hover {
-  background: #ddd;
-  /* Change the background color of the track on hover */
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

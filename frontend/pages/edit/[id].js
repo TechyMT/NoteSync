@@ -29,11 +29,10 @@ function Edit() {
         fetchData();
     }, []);
     return (
-        <div className="">
-
+        <>
             {noteData && <Editor data={noteData} id={id} />}
+        </>
 
-        </div>
     );
 }
 

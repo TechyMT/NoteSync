@@ -8,7 +8,7 @@ const Navbar = () => {
     const [display, setDisplay] = useState(false);
     console.log(user);
     return (
-        <header className='py-3  flex justify-between'>
+        <header className='p-3  flex justify-between bg-gray-50 dark:bg-gray-800'>
             <div className="relative flex items-center lg:w-1/4 h-10 rounded-full focus-within:ring-1 border border-gray-400 focus:ring-blue-500 bg-white  dark:bg-gray-900 overflow-hidden">
                 <div className="grid place-items-center h-full w-12 text-gray-300 dark:bg-gray-900" >
                     <FaSearch />

@@ -2,7 +2,7 @@ import { HiOutlineHome, HiOutlineFolderDownload, HiOutlineStar, HiOutlineCog } f
 import { HiMiniHashtag } from "react-icons/hi2";
 
 export const navList = [
-    { title: "Home", icon: <HiOutlineHome className='text-xl' /> },
+    { title: "Dashboard", icon: <HiOutlineHome className='text-xl' /> },
     { title: "Important", icon: <HiOutlineStar className='text-xl' /> },
     { title: "Archive", icon: <HiOutlineFolderDownload className='text-xl' /> },
     { title: "Tags", icon: <HiMiniHashtag className='text-xl' /> },

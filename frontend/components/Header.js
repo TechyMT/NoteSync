@@ -5,7 +5,7 @@ import useNotesStore from '@/store/notesStore'
 const Header = ({ count }) => {
     const { category, setCategory } = useNotesStore();
     return (
-        <div className="flex mt-3">
+        <div className="flex mt-3 px-4">
             <div className="title-sc">
                 <span className='text-xs uppercase text-gray-600 dark:text-gray-100'>Overview</span>
                 <h2 className='text-2xl font-semibold'>Notes <span className="text-gray-600 dark:text-gray-100 text-lg">({count})</span></h2>
