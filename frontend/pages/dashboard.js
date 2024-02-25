@@ -95,7 +95,7 @@ const Dashboard = () =>
                                 <Header count={notesData.length} />
                                 {/* Notes Section */}
                             </div>
-                            <div className="notes px-6 py-4 min-h-[70vh] mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            <div className="notes px-6 py-4 min-h-[70vh] items-start mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                 {/* Add New Note */}
                                 <button onClick={handleNewNote}>
                                     <div className=" cursor-pointer note-card flex items-center justify-center bg-white dark:bg-gray-900 rounded-lg shadow-md flex-col p-4">
