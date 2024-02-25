@@ -77,7 +77,7 @@ const Dashboard = () => {
         <>
             {
                 user ?
-                    <main className={`${outfit.className} conatiner flex bg-gray-100 h-screen `}>
+                    <main className={`${outfit.className} conatiner flex bg-gray-100 h-screen dark:bg-gray-800 `}>
                         < Sidebar />
                         <div className="w-full overflow-y-scroll ">
                             <div className="px-6">
@@ -86,10 +86,10 @@ const Dashboard = () => {
                                 <Header count={notesData.length} />
                                 {/* Notes Section */}
                             </div>
-                            <div className="notes px-6 py-4  mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            <div className="notes px-6 py-4 min-h-[70vh] mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                 {/* Add New Note */}
                                 <button onClick={handleNewNote}>
-                                    <div className=" cursor-pointer note-card flex items-center justify-center bg-white rounded-lg shadow-md flex-col p-4">
+                                    <div className=" cursor-pointer note-card flex items-center justify-center bg-white dark:bg-gray-900 rounded-lg shadow-md flex-col p-4">
                                         <div className="border-2 flex items-center justify-center border-dashed border-blue-400 rounded-full h-32 w-32">
                                             <MdAdd className='text-3xl' />
                                         </div>

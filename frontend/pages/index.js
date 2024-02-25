@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from 'react';
 import { Mulish, Outfit } from 'next/font/google';
 import { FcGoogle } from "react-icons/fc";
@@ -81,12 +82,12 @@ export default function Home() {
             <button onClick={handleEmailSignIn} type="button" class="mb-6 px-3 py-2 w-full text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-2 focus:ring-offset-1 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
             <hr />
             {/* Sign in with Google */}
-            <button onClick={handleGoogleSignIn} type="button" class="text-black mt-6 bg-gray-200 hover:bg-gray-300 items-center justify-center gap-2 w-full focus:ring-2 focus:ring-offset-1 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex dark:focus:ring-[#4285F4]/55 me-2 mb-2">
+            <button onClick={handleGoogleSignIn} type="button" class="text-black mt-6 bg-gray-200 dark:bg-gray-300 hover:bg-gray-300 items-center justify-center gap-2 w-full focus:ring-2 focus:ring-offset-1 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex dark:focus:ring-[#4285F4]/55 me-2 mb-2">
               <FcGoogle className='text-xl' />
               Sign in with Google
             </button>
             {/* Sign in with Google */}
-            <button onClick={handleGithubSignIn} type="button" class="text-black mt-3 bg-gray-200 hover:bg-gray-300 items-center justify-center gap-2 w-full focus:ring-2 focus:ring-offset-1 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex dark:focus:ring-[#4285F4]/55 me-2 mb-2">
+            <button onClick={handleGithubSignIn} type="button" class="text-black mt-3 bg-gray-200 dark:bg-gray-300 hover:bg-gray-300 items-center justify-center gap-2 w-full focus:ring-2 focus:ring-offset-1 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex dark:focus:ring-[#4285F4]/55 me-2 mb-2">
               <FaGithub className='text-xl' />
               Sign in with Github
             </button>

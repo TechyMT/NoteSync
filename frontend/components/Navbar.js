@@ -9,19 +9,19 @@ const Navbar = () => {
     console.log(user);
     return (
         <header className='py-3  flex justify-between'>
-            <div class="relative flex items-center lg:w-1/4 h-10 rounded-full focus-within:ring-1 border border-gray-400 focus:ring-blue-500 bg-white overflow-hidden">
-                <div class="grid place-items-center h-full w-12 text-gray-300">
+            <div class="relative flex items-center lg:w-1/4 h-10 rounded-full focus-within:ring-1 border border-gray-400 focus:ring-blue-500 bg-white  dark:bg-gray-900 overflow-hidden">
+                <div class="grid place-items-center h-full w-12 text-gray-300 dark:bg-gray-900" >
                     <FaSearch />
                 </div>
 
                 <input
-                    class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+                    class="peer h-full w-full outline-none text-sm text-gray-700 pr-2 dark:bg-gray-900"
                     type="text"
                     id="search"
                     placeholder="Search something.." />
             </div>
 
-            <div className="flex gap-3 items-center relative">
+            <div className="flex gap-3 items-center relative ">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center active:bg-blue-200 px-2 py-1 cursor-pointer">
 
                     <MdOutlineNotifications className='text-2xl text-gray-800' />

@@ -10,7 +10,7 @@ const Card = ({ id, category, title, content, timestamp, displayName }) => {
             query: { id: `${id}` },
 
         }} as={`/edit/${id}`}>
-            <div className="note-card bg-white rounded-lg shadow-md p-4">
+            <div className="note-card bg-white dark:bg-gray-900 rounded-lg shadow-md p-4">
                 <div className="category flex items-center gap-2">
                     <span className="w-3 h-3 bg-green-400 rounded-full capitalize"></span>
                     <span>{category || "Frontend"}</span>
